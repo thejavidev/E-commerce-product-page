@@ -33,7 +33,7 @@ const Header = () => {
 
   return (
     <>
-      <header className=" px-[9.375rem] py-[1.25rem]  w-full fixed top-0 left-0 right-0 ">
+      <header className=" px-[9.375rem] py-[1.25rem]  w-full fixed top-0 left-0 right-0 bg-[#fff]">
         <div className="flex items-center w-full  justify-between  border-b-2 pb-[1.875rem]">
           <div className="flex items-center">
             <div className="mr-[1.25rem]">
@@ -89,10 +89,10 @@ const Header = () => {
               </div>
             </div>
             <div
-              className="w-[2.5rem] h-[2.5rem] cursor-pointer"
+              className="w-[2.5rem] h-[2.5rem] cursor-pointer "
               onClick={toggleBasket}
             >
-              <img src={avatar} alt="" />
+              <img src={avatar}  alt="" />
             </div>
           </div>
         </div>

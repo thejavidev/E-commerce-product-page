@@ -21,7 +21,7 @@ export default {
         'max': '991px'
       },
       'sm': {
-        'max': '766px'
+        'max': '767px'
       },
       'xs': {
         'max': '480px'

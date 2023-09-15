@@ -48,7 +48,7 @@ const Header = () => {
         ref={overlay}
         className="fixed top-0 left-0 right-0 w-full h-full bgColor  opacity-0 invisible transition-all z-[800]"
       ></div>
-      <header className=" px-[9.375rem] md:z-[700] py-[1.25rem]  w-full fixed top-0 left-0 right-0 bg-[#fff]">
+      <header className=" px-[9.375rem] xl:px-[7rem] md:px-[2rem] md:z-[700] py-[1.25rem]  w-full fixed top-0 left-0 right-0 bg-[#fff]">
         <div className="flex items-center w-full  justify-between  border-b-2 pb-[1.875rem]">
           <div className="flex items-center">
             <div className="mr-[1.25rem] flex items-center gap-[20px]">

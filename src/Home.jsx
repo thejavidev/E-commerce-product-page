@@ -25,11 +25,11 @@ const Home = () => {
   return (
     <>
       <div className="mt-[8.125rem] "></div>
-      <div className="grid grid-cols-2 gap-4 px-[9.375rem] xl:px-[3.125rem] lg:px-[1.25rem]">
-        <div className=" px-[5rem] py-[1.25rem] lg:px-[1.25rem]">
+      <div className="grid grid-cols-2 gap-4 px-[9.375rem] xl:px-[3.125rem] lg:px-[1.25rem] md:grid-cols-1">
+        <div className=" px-[5rem] md:px-[0rem] py-[1.25rem] lg:px-[1.25rem]">
           <img
             ref={bigSrc}
-            className="h-[28.125rem] w-full object-cover rounded-xl mb-[1.25rem]"
+            className="h-[28.125rem] md:h-[25rem] w-full object-cover rounded-xl mb-[1.25rem]"
             src={bigImgSrc ? bigImgSrc : shoes1}
             alt=""
           />
@@ -39,7 +39,7 @@ const Home = () => {
                 onClick={handleSmallImageClick}
                 ref={smallSrc}
                 src={shoes2}
-                className="rounded-xl h-[6.25rem] w-full object-cover cursor-pointer relative  "
+                className="rounded-xl h-[6.25rem] md:h-[5rem] w-full object-cover cursor-pointer relative  "
                 alt=""
               />
             </div>
@@ -47,7 +47,7 @@ const Home = () => {
               <img
                 onClick={handleSmallImageClick}
                 src={shoes1}
-                className="rounded-xl h-[6.25rem] w-full object-cover cursor-pointer relative  "
+                className="rounded-xl h-[6.25rem] md:h-[5rem] w-full object-cover cursor-pointer relative  "
                 alt=""
               />
             </div>
@@ -55,7 +55,7 @@ const Home = () => {
               <img
                 onClick={handleSmallImageClick}
                 src={shoes3}
-                className="rounded-xl h-[6.25rem] w-full object-cover cursor-pointer relative  "
+                className="rounded-xl h-[6.25rem] md:h-[5rem] w-full object-cover cursor-pointer relative  "
                 alt=""
               />
             </div>
@@ -63,18 +63,18 @@ const Home = () => {
               <img
                 onClick={handleSmallImageClick}
                 src={shoes4}
-                className="rounded-xl h-[6.25rem] w-full object-cover cursor-pointer relative  "
+                className="rounded-xl h-[6.25rem] md:h-[5rem] w-full object-cover cursor-pointer relative  "
                 alt=""
               />
             </div>
           </div>
         </div>
         <div className="">
-          <div className="flex flex-col justify-center h-full ">
+          <div className="flex flex-col justify-center md:justify-start h-full mb-[6.25rem]">
             <h5 className="text-[#d7691c] uppercase font-semibold text-[1rem] mb-[1.25rem]">
               sneaker company
             </h5>
-            <h2 className="text-[#000] text-[1.875rem] uppercase font-bold w-[60%] pb-[1.25rem]">
+            <h2 className="text-[#000] text-[1.875rem] md:text-[1.3rem] uppercase font-bold w-[60%] pb-[1.25rem]">
               fall limited edition sneakers
             </h2>
             <p className="text-[0.813rem] w-[70%] pb-[1.25rem]">

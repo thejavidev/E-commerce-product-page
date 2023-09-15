@@ -6,40 +6,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html,body{
+
+html,
+body {
   overflow-x: hidden;
   font-size: 16px;
 }
-.basket-card{
+
+.basket-card {
   transition: all .4s linear;
 }
-.open{
+
+.open {
   visibility: visible;
   opacity: 1;
 }
-.shadow-mm{
+
+.shadow-mm {
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
   width: 7px;
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
   background: #d8a706;
 }
-.images .picture.active{
+
+.images .picture.active {
   border: 2px solid #d7691c;
 
 }
-.images .picture.active::after{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(239, 211, 190,.7);
-    border-radius: 0.75rem;
-    z-index: 20;
-    display: block;
+
+.images .picture.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(239, 211, 190, .7);
+  border-radius: 0.75rem;
+  z-index: 20;
+  display: block;
+}
+
+.openMenu {
+  left: 0 !important;
+}
+
+.bgColor {
+  background: rgba(17, 17, 26, 0.7);
+}
+
+.openOverlay {
+  opacity: 1 !important;
+  visibility: visible !important;
 }

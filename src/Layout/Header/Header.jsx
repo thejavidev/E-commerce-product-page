@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { avatar, logo, shoes1 } from "../../assets";
 import { SlBasket } from "react-icons/sl";
 import { BsTrash } from "react-icons/bs";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 const Header = () => {
   const menu = [
     {
@@ -26,23 +27,45 @@ const Header = () => {
     },
   ];
   const basketCard = useRef();
+  const openUl = useRef();
+  const overlay = useRef();
 
+  const openMenu = () => {
+    openUl.current.classList.add("openMenu");
+    overlay.current.classList.add("openOverlay");
+  };
+  const closeMenu = () => {
+    openUl.current.classList.remove("openMenu");
+    overlay.current.classList.remove("openOverlay");
+  };
   const toggleBasket = () => {
     basketCard.current.classList.toggle("open");
   };
 
   return (
     <>
-      <header className=" px-[9.375rem] py-[1.25rem]  w-full fixed top-0 left-0 right-0 bg-[#fff]">
+      <div
+        ref={overlay}
+        className="fixed top-0 left-0 right-0 w-full h-full bgColor  opacity-0 invisible transition-all z-[800]"
+      ></div>
+      <header className=" px-[9.375rem] md:z-[700] py-[1.25rem]  w-full fixed top-0 left-0 right-0 bg-[#fff]">
         <div className="flex items-center w-full  justify-between  border-b-2 pb-[1.875rem]">
           <div className="flex items-center">
-            <div className="mr-[1.25rem]">
+            <div className="mr-[1.25rem] flex items-center gap-[20px]">
+              <button className="text-[20px] cursor-pointer hidden md:block" onClick={openMenu}>
+                <AiOutlineMenu />
+              </button>
               <img src={logo} alt="" />
             </div>
-            <ul className="flex gap-[0.625rem] items-center">
+
+            <ul
+              ref={openUl}
+              className="flex gap-[0.625rem] items-center md:hidden"
+            >
+             
               {menu &&
                 menu?.map((item, i) => (
-                  <li className="capitalize font-[300] " key={i}>
+                  <li className="capitalize font-[300] md:font-bold" key={i}>
                     {item.name}
                   </li>
                 ))}
@@ -92,11 +115,29 @@ const Header = () => {
               className="w-[2.5rem] h-[2.5rem] cursor-pointer "
               onClick={toggleBasket}
             >
-              <img src={avatar}  alt="" />
+              <img src={avatar} alt="" />
             </div>
           </div>
         </div>
       </header>
+      <div className="mobileMenu z-[820] relative">
+        <ul>
+          <ul
+            ref={openUl}
+            className="flex gap-[0.625rem] items-start fixed flex-col h-full top-0  left-[-100%] pt-[40px] w-[200px] bg-white   pl-[40px] transition-all duration-700"
+          >
+            <buton className="mb-[20px] cursor-pointer" onClick={closeMenu}>
+              <AiOutlineClose />
+            </buton>
+            {menu &&
+              menu?.map((item, i) => (
+                <li className="capitalize font-[300] md:font-bold" key={i}>
+                  {item.name}
+                </li>
+              ))}
+          </ul>
+        </ul>
+      </div>
     </>
   );
 };

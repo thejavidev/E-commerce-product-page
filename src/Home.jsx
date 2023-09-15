@@ -4,11 +4,14 @@ import { BiPlusMedical } from "react-icons/bi";
 import { FaMinus } from "react-icons/fa";
 import { SlBasket } from "react-icons/sl";
 import { basket } from "./data/fakeData";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "./features/createPorduct";
 const Home = () => {
   const bigSrc = useRef();
   const smallSrc = useRef();
   const [bigImgSrc, setBigImgSrc] = useState("");
   const [count, setCount] = useState(0);
+  const dispacth = useDispatch();
 
   const handleSmallImageClick = (e) => {
     const smallImageSrc = e.target.getAttribute("src");
@@ -22,6 +25,12 @@ const Home = () => {
       setCount(count - 1);
     }
   };
+  const handleAddToCard = (item) => {
+    dispacth(addToCart(item));
+  };
+
+  const states = useSelector((state) => state.cart);
+  console.log(states);
 
   return (
     <>
@@ -29,8 +38,14 @@ const Home = () => {
       <div className="">
         {basket &&
           basket?.map((item, i) => (
-            <div key={i} className="grid grid-cols-2 gap-4 px-[9.375rem] xl:px-[3.125rem] lg:px-[1.25rem] md:grid-cols-1">
-              <div key={i} className=" px-[5rem] md:px-[0rem] py-[1.25rem] lg:px-[1.25rem]">
+            <div
+              key={i}
+              className="grid grid-cols-2 gap-4 px-[9.375rem] xl:px-[3.125rem] lg:px-[1.25rem] md:grid-cols-1"
+            >
+              <div
+                key={i}
+                className=" px-[5rem] md:px-[0rem] py-[1.25rem] lg:px-[1.25rem]"
+              >
                 <img
                   ref={bigSrc}
                   className="h-[28.125rem] md:h-[25rem] w-full object-cover rounded-xl mb-[1.25rem]"
@@ -59,20 +74,18 @@ const Home = () => {
                   <h2 className="text-[#000] text-[1.875rem] md:text-[1.3rem] uppercase font-bold w-[60%] ">
                     {item?.name}
                   </h2>
-                  <p className="text-[0.813rem] w-[70%] ">
-                    {item?.title}
-                  </p>
+                  <p className="text-[0.813rem] w-[70%] ">{item?.title}</p>
 
                   <p className="flex items-center gap-[0.625rem]">
                     <a className="text-[#000] text-[1.563rem] font-bold">
-                      $ {item?.price}
+                      ${item?.price}
                     </a>
                     <span className="bg-[#fff2e7] text-[#d7691c] font-bold p-[0.188rem] rounded-[0.313rem]">
-                      {item?.discount} %
+                      {item?.discount}%
                     </span>
                   </p>
                   <p className="text-[#c0c0c8] font-semibold line-through">
-                    $ {item?.oldprice}
+                    ${item?.oldprice}
                   </p>
                   <div className="flex items-center  gap-[1.25rem]">
                     <div className="flex items-center gap-[1.25rem] bg-[#f7f8fd] p-[0.625rem] rounded-md ">
@@ -86,7 +99,10 @@ const Home = () => {
                         className="text-[#d7691c] font-semibold cursor-pointer"
                       />
                     </div>
-                    <button className="bg-[#ff7d1b] flex items-center gap-[0.625rem] text-white text-[1.25rem] px-[2.5rem] py-[0.313rem] rounded-md transition-all hover:bg-[#ffac6a]">
+                    <button
+                      onClick={() => handleAddToCard(item)}
+                      className="bg-[#ff7d1b] flex items-center gap-[0.625rem] text-white text-[1.25rem] px-[2.5rem] py-[0.313rem] rounded-md transition-all hover:bg-[#ffac6a]"
+                    >
                       <SlBasket />
                       Add to cart
                     </button>

@@ -3,6 +3,7 @@ import { avatar, logo, shoes1 } from "../../assets";
 import { SlBasket } from "react-icons/sl";
 import { BsTrash } from "react-icons/bs";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { useSelector } from "react-redux";
 const Header = () => {
   const menu = [
     {
@@ -41,7 +42,10 @@ const Header = () => {
   const toggleBasket = () => {
     basketCard.current.classList.toggle("open");
   };
-
+  const states = useSelector((state) => state.cart);
+  const products =states?.cartItems;
+  const length =states?.cartItems.length
+ 
   return (
     <>
       <div
@@ -76,7 +80,7 @@ const Header = () => {
               <button className="relative" onClick={toggleBasket}>
                 <SlBasket className="text-[1.375rem]" />
                 <span className="w-[0.938rem] h-[0.938rem] text-[0.625rem] p-[0.625rem] rounded-full bg-red-800 flex items-center justify-center text-white  absolute top-[-0.625rem] right-[-0.625rem]">
-                  1
+                  {length}
                 </span>
               </button>
               <div
@@ -86,6 +90,9 @@ const Header = () => {
                 <h2 className="border-b-[0.063rem] border-[#000] w-full capitalize pb-[0.25rem] ">
                   cart
                 </h2>
+                {
+                  
+                }
                 <div className="cards pt-[0.625rem] h-[10.5rem] overflow-y-scroll mb-[0.625rem]">
                   <div className="flex justify-between w-full items-center gap-[0.625rem] mb-[0.625rem] border-b-[0.063rem] border-[#ccc] pb-[0.313rem]">
                     <img

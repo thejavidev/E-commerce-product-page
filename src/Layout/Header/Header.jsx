@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { avatar, logo, shoes1 } from "../../assets";
 import { SlBasket } from "react-icons/sl";
 import { BsTrash } from "react-icons/bs";
@@ -31,6 +31,8 @@ const Header = () => {
   const openUl = useRef();
   const overlay = useRef();
 
+ 
+
   const openMenu = () => {
     openUl.current.classList.add("openMenu");
     overlay.current.classList.add("openOverlay");
@@ -43,9 +45,18 @@ const Header = () => {
     basketCard.current.classList.toggle("open");
   };
   const states = useSelector((state) => state.cart);
-  const products =states?.cartItems;
-  const length =states?.cartItems.length
- 
+  const products = states?.cartItems;
+
+  const length = states?.cartItems.length;
+
+  useEffect(() => {}, [products]);
+  const deleteItem = (id) => {
+    const updatedProducts = products.filter((item) => item.id !== id);
+    console.log("data", updatedProducts);
+  };
+
+  const productLenth = products.map((item) => item.cartQuantity);
+
   return (
     <>
       <div
@@ -56,7 +67,10 @@ const Header = () => {
         <div className="flex items-center w-full  justify-between  border-b-2 pb-[1.875rem]">
           <div className="flex items-center">
             <div className="mr-[1.25rem] flex items-center gap-[20px]">
-              <button className="text-[20px] cursor-pointer hidden md:block" onClick={openMenu}>
+              <button
+                className="text-[20px] cursor-pointer hidden md:block"
+                onClick={openMenu}
+              >
                 <AiOutlineMenu />
               </button>
               <img src={logo} alt="" />
@@ -66,7 +80,6 @@ const Header = () => {
               ref={openUl}
               className="flex gap-[0.625rem] items-center md:hidden"
             >
-             
               {menu &&
                 menu?.map((item, i) => (
                   <li className="capitalize font-[300] md:font-bold" key={i}>
@@ -90,28 +103,33 @@ const Header = () => {
                 <h2 className="border-b-[0.063rem] border-[#000] w-full capitalize pb-[0.25rem] ">
                   cart
                 </h2>
-                {
-                  
-                }
                 <div className="cards pt-[0.625rem] h-[10.5rem] overflow-y-scroll mb-[0.625rem]">
-                  <div className="flex justify-between w-full items-center gap-[0.625rem] mb-[0.625rem] border-b-[0.063rem] border-[#ccc] pb-[0.313rem]">
-                    <img
-                      className="w-[2.5rem] rounded-sm"
-                      src={shoes1}
-                      alt=""
-                    />
-                    <div className="flex flex-col">
-                      <p className="line-clamp-1 text-[0.75rem]">
-                        Lorem ipsum dolor sit amet.
-                      </p>
-                      <p className="text-[0.75]">
-                        <span>$ 125</span> x <span>3</span> <span>$ 375</span>
-                      </p>
-                    </div>
-                    <button>
-                      <BsTrash />
-                    </button>
-                  </div>
+                  {products &&
+                    products?.map((item, i) => (
+                      <div
+                        key={i}
+                        className="flex justify-between w-full items-center gap-[0.625rem] mb-[0.625rem] border-b-[0.063rem] border-[#ccc] pb-[0.313rem]"
+                      >
+                        <img
+                          className="w-[2.5rem] rounded-sm"
+                          src={item?.src}
+                          alt=""
+                        />
+                        <div className="flex flex-col">
+                          <p className="line-clamp-1 text-[0.75rem]">
+                            {item?.name}
+                          </p>
+                          <p className="text-[0.75]">
+                            <span>$ {item?.price}</span> x
+                            <span className="pl-[10px]">{productLenth}</span>
+                            <span className="pl-[10px]">${item?.price * productLenth}</span>
+                          </p>
+                        </div>
+                        <button onClick={() => deleteItem(i)}>
+                          <BsTrash />
+                        </button>
+                      </div>
+                    ))}
                 </div>
                 <button className="bg-[#ff7d1b] text-[#fff] capitalize rounded-xl w-full px-[0.625rem] py-[0.75rem]">
                   checkout
@@ -133,9 +151,9 @@ const Header = () => {
             ref={openUl}
             className="flex gap-[0.625rem] items-start fixed flex-col h-full top-0  left-[-100%] pt-[40px] w-[200px] bg-white   pl-[40px] transition-all duration-700"
           >
-            <buton className="mb-[20px] cursor-pointer" onClick={closeMenu}>
+            <a className="mb-[20px] cursor-pointer" onClick={closeMenu}>
               <AiOutlineClose />
-            </buton>
+            </a>
             {menu &&
               menu?.map((item, i) => (
                 <li className="capitalize font-[300] md:font-bold" key={i}>

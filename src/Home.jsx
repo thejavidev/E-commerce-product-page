@@ -29,8 +29,9 @@ const Home = () => {
     dispacth(addToCart(item));
   };
 
-  const states = useSelector((state) => state.cart);
-  console.log(states);
+
+
+
 
   return (
     <>

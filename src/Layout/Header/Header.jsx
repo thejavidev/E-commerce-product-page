@@ -31,8 +31,6 @@ const Header = () => {
   const openUl = useRef();
   const overlay = useRef();
 
- 
-
   const openMenu = () => {
     openUl.current.classList.add("openMenu");
     overlay.current.classList.add("openOverlay");
@@ -122,7 +120,9 @@ const Header = () => {
                           <p className="text-[0.75]">
                             <span>$ {item?.price}</span> x
                             <span className="pl-[10px]">{productLenth}</span>
-                            <span className="pl-[10px]">${item?.price * productLenth}</span>
+                            <span className="pl-[10px]">
+                              ${item?.price * productLenth}
+                            </span>
                           </p>
                         </div>
                         <button onClick={() => deleteItem(i)}>

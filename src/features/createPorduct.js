@@ -8,7 +8,7 @@ const initialState = {
     cartItems: items,
 }
 
-const setLocalFnc = (item) => {
+export const setLocalFnc = (item) => {
     localStorage.setItem("products", JSON.stringify(item))
 }
 
@@ -27,9 +27,9 @@ const cartSlice = createSlice({
                     cartQuantity: 1
                 }
                 state.cartItems.push(tempProduct)
-                
+                setLocalFnc(state.cartItems.map((item) => item))
             }
-            setLocalFnc(state.cartItems)
+
         }
     }
 })

@@ -5,13 +5,15 @@ import { FaMinus } from "react-icons/fa";
 import { SlBasket } from "react-icons/sl";
 import { basket } from "./data/fakeData";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "./features/createPorduct";
+import { addToCart, setLocalFnc } from "./features/createPorduct";
 const Home = () => {
   const bigSrc = useRef();
   const smallSrc = useRef();
   const [bigImgSrc, setBigImgSrc] = useState("");
+  const prodcutBtn = useRef();
   const [count, setCount] = useState(0);
-  const dispacth = useDispatch();
+
+  const dispatch = useDispatch();
 
   const handleSmallImageClick = (e) => {
     const smallImageSrc = e.target.getAttribute("src");
@@ -25,13 +27,10 @@ const Home = () => {
       setCount(count - 1);
     }
   };
+
   const handleAddToCard = (item) => {
-    dispacth(addToCart(item));
+    dispatch(addToCart({ ...item, quantity: count }));
   };
-
-
-
-
 
   return (
     <>
@@ -101,6 +100,8 @@ const Home = () => {
                       />
                     </div>
                     <button
+                      ref={prodcutBtn}
+                      disabled={count === 0}
                       onClick={() => handleAddToCard(item)}
                       className="bg-[#ff7d1b] flex items-center gap-[0.625rem] text-white text-[1.25rem] px-[2.5rem] py-[0.313rem] rounded-md transition-all hover:bg-[#ffac6a]"
                     >

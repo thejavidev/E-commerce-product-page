@@ -5,7 +5,7 @@ import { FaMinus } from "react-icons/fa";
 import { SlBasket } from "react-icons/sl";
 import { basket } from "./data/fakeData";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, setLocalFnc } from "./features/createPorduct";
+import { addToCart } from "./features/createPorduct";
 const Home = () => {
   const bigSrc = useRef();
   const smallSrc = useRef();

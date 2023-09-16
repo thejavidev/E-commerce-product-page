@@ -8,7 +8,7 @@ const initialState = {
     cartItems: items,
 }
 
-export const setLocalFnc = (item) => {
+const setLocalFnc = (item) => {
     localStorage.setItem("products", JSON.stringify(item))
 }
 
@@ -29,13 +29,22 @@ const cartSlice = createSlice({
                 state.cartItems.push(tempProduct)
                 setLocalFnc(state.cartItems.map((item) => item))
             }
-
-        }
+        },
+        removeFromCart: (state, action) => {
+            const itemIndex = state.cartItems.findIndex((element) => element.id === action.payload.id);
+            if (itemIndex >= 0) {
+                // Ürünü sepetten kaldırın
+                state.cartItems.splice(itemIndex, 1);
+                // setLocalFnc'i çağırarak güncel verileri localStorage'a kaydedin
+                setLocalFnc(state.cartItems);
+            }
+        },
     }
 })
 
 export const {
-    addToCart
+    addToCart,
+    removeFromCart
 } = cartSlice.actions;
 
 export default cartSlice.reducer

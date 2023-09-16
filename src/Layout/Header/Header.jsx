@@ -3,7 +3,8 @@ import { avatar, logo, shoes1 } from "../../assets";
 import { SlBasket } from "react-icons/sl";
 import { BsTrash } from "react-icons/bs";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart } from "../../features/createPorduct";
 const Header = () => {
   const menu = [
     {
@@ -30,7 +31,7 @@ const Header = () => {
   const basketCard = useRef();
   const openUl = useRef();
   const overlay = useRef();
-
+  const dispatch = useDispatch();
   const openMenu = () => {
     openUl.current.classList.add("openMenu");
     overlay.current.classList.add("openOverlay");
@@ -48,9 +49,8 @@ const Header = () => {
   const length = states?.cartItems.length;
 
   useEffect(() => {}, [products]);
-  const deleteItem = (id) => {
-    const updatedProducts = products.filter((item) => item.id !== id);
-    console.log("data", updatedProducts);
+  const handleRemoveFromCart = (id) => {
+    dispatch(removeFromCart(id));
   };
 
   const productLenth = products.map((item) => item.cartQuantity);
@@ -125,7 +125,7 @@ const Header = () => {
                             </span>
                           </p>
                         </div>
-                        <button onClick={() => deleteItem(i)}>
+                        <button onClick={() => handleRemoveFromCart(item)}>
                           <BsTrash />
                         </button>
                       </div>

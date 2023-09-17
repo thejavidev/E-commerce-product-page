@@ -53,7 +53,7 @@ const Header = () => {
     dispatch(removeFromCart(id));
   };
 
-  const productLenth = products.map((item) => item.cartQuantity);
+  const productLenth = products.map((item) => item.newCount);
 
   return (
     <>
@@ -61,8 +61,8 @@ const Header = () => {
         ref={overlay}
         className="fixed top-0 left-0 right-0 w-full h-full bgColor  opacity-0 invisible transition-all z-[800]"
       ></div>
-      <header className=" px-[9.375rem] xl:px-[7rem] md:px-[2rem] md:z-[700] py-[1.25rem]  w-full fixed top-0 left-0 right-0 bg-[#fff]">
-        <div className="flex items-center w-full  justify-between  border-b-2 pb-[1.875rem]">
+      <header className=" px-[9.375rem] xl:px-[7rem] md:px-[1rem] md:py-[.6rem] md:z-[700] py-[1.25rem]  w-full fixed top-0 left-0 right-0 bg-[#fff]">
+        <div className="flex items-center w-full  justify-between  border-b-2 pb-[1.875rem] md:pb-0">
           <div className="flex items-center">
             <div className="mr-[1.25rem] flex items-center gap-[20px]">
               <button
@@ -71,7 +71,7 @@ const Header = () => {
               >
                 <AiOutlineMenu />
               </button>
-              <img src={logo} alt="" />
+              <img src={logo} className="md:w-[100px]" alt="" />
             </div>
 
             <ul
@@ -130,6 +130,11 @@ const Header = () => {
                         </button>
                       </div>
                     ))}
+                  {!products?.length && (
+                    <p className="text-center italic opacity-70 mt-[3rem] font-semibold pt-[10px] text-[--text]">
+                      Your cartis empty.
+                    </p>
+                  )}
                 </div>
                 <button className="bg-[#ff7d1b] text-[#fff] capitalize rounded-xl w-full px-[0.625rem] py-[0.75rem]">
                   checkout
@@ -140,7 +145,7 @@ const Header = () => {
               className="w-[2.5rem] h-[2.5rem] cursor-pointer "
               onClick={toggleBasket}
             >
-              <img src={avatar} alt="" />
+              <img src={avatar} className="md:w-[30px]" alt="" />
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ import { FaMinus } from "react-icons/fa";
 import { SlBasket } from "react-icons/sl";
 import { BiSolidChevronRight, BiSolidChevronLeft } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+
 
 import { useDispatch } from "react-redux";
 import { addToCart } from "./features/createPorduct";
@@ -73,10 +73,10 @@ const Home = () => {
     setCurrentPicIndex2(i.id - 1);
     console.log(i.id);
   };
-  const handleSmallImageClick2 = (e) => {
-    const smallImageSrc = e.target.getAttribute("src");
-    setBigImgSrc2(smallImageSrc);
-  };
+  // const handleSmallImageClick2 = (e) => {
+  //   const smallImageSrc = e.target.getAttribute("src");
+  //   setBigImgSrc2(smallImageSrc);
+  // };
 
   const openNewPicPlus = () => {
     if (currentPicIndex < item?.pictures?.length - 1) {
@@ -211,7 +211,7 @@ const Home = () => {
                   </h2>
                   <p className="text-[0.813rem] w-[70%] ">{item?.title}</p>
 
-                  <div className="flex flex-col gap-[1rem] md:flex-row items-center md:justify-between">
+                  <div className="flex flex-col gap-[1rem] md:flex-row md:items-center md:justify-between">
                     <p className="flex items-center gap-[0.625rem]">
                       <a className="text-[#000] text-[1.563rem] font-bold">
                         ${item?.price}
@@ -220,7 +220,7 @@ const Home = () => {
                         {item?.discount}%
                       </span>
                     </p>
-                    <p className="text-[#c0c0c8] font-semibold line-through md:text-[20px]">
+                    <p className="text-[#c0c0c8] font-semibold line-through md:text-[25px]">
                       ${item?.oldprice}
                     </p>
                   </div>

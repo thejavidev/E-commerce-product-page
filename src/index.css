@@ -33,12 +33,15 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #d8a706;
 }
-
+.border-xp{
+  border: 2px solid #08af24;
+}
 .images .picture.active {
   border: 2px solid #d7691c;
 }
 
-.images .picture.active::before {
+.images .picture.active::before,
+.images .picture:hover::before{
   content: '';
   position: absolute;
   top: 0;
@@ -49,7 +52,8 @@ body {
   background: rgba(239, 211, 190, .7);
   border-radius: 0.75rem;
   z-index: 20;
-  transition: all .6s linear;
+  transition: all .6s ease;
+  cursor: pointer;
 }
 
 .modalImg.active::before {
@@ -65,7 +69,6 @@ body {
   z-index: 20;
   transition: all .6s linear;
 }
-
 .images .modalImg.active {
   border: 2px solid #d7691c;
 }

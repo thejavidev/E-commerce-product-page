@@ -6,7 +6,6 @@ import { SlBasket } from "react-icons/sl";
 import { BiSolidChevronRight, BiSolidChevronLeft } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
-
 import { useDispatch } from "react-redux";
 import { addToCart } from "./features/createPorduct";
 
@@ -20,6 +19,7 @@ const Home = () => {
   const overlay = useRef();
   const countSpan = useRef();
   const picturesModal = useRef();
+  const notifDiv = useRef();
   const [count, setCount] = useState(0);
 
   const basket = [
@@ -66,17 +66,11 @@ const Home = () => {
     const smallImageSrc = i.src;
     setBigImgSrc(smallImageSrc);
     setCurrentPicIndex(i.id - 1);
-    console.log(i.id);
   };
 
   const handleSmallImageClickModal = (i) => {
     setCurrentPicIndex2(i.id - 1);
-    console.log(i.id);
   };
-  // const handleSmallImageClick2 = (e) => {
-  //   const smallImageSrc = e.target.getAttribute("src");
-  //   setBigImgSrc2(smallImageSrc);
-  // };
 
   const openNewPicPlus = () => {
     if (currentPicIndex < item?.pictures?.length - 1) {
@@ -114,26 +108,34 @@ const Home = () => {
 
   const handleAddToCard = (item) => {
     dispatch(addToCart({ ...item, quantity: item.quantity + count }));
-    countSpan.current.innerHTML = 0;
+    setCount(0);
+    if (notifDiv?.current?.classList?.contains("right-[-100%]")) {
+      notifDiv?.current?.classList?.remove("right-[-100%]");
+      notifDiv?.current?.classList?.add("right-12");
+    }
+    setTimeout(() => {
+      notifDiv?.current?.classList?.remove("right-12");
+      notifDiv?.current?.classList?.add("right-[-100%]");
+    }, 2000);
   };
   const opeenModal = () => {
-    if (picturesModal.current.classList.contains("hidden")) {
-      picturesModal.current.classList.remove("hidden");
-      picturesModal.current.classList.add("block");
+    if (picturesModal?.current?.classList?.contains("hidden")) {
+      picturesModal?.current?.classList?.remove("hidden");
+      picturesModal?.current?.classList?.add("block");
     }
-    if (overlay.current.classList.contains("invisible")) {
-      overlay.current.classList.remove("invisible");
-      overlay.current.classList.add("visible");
+    if (overlay.current?.classList?.contains("invisible")) {
+      overlay.current?.classList?.remove("invisible");
+      overlay.current?.classList?.add("visible");
     }
   };
   const closeModal = () => {
-    if (picturesModal.current.classList.contains("block")) {
-      picturesModal.current.classList.remove("block");
-      picturesModal.current.classList.add("hidden");
+    if (picturesModal?.current?.classList?.contains("block")) {
+      picturesModal?.current?.classList?.remove("block");
+      picturesModal?.current?.classList?.add("hidden");
     }
-    if (overlay.current.classList.contains("visible")) {
-      overlay.current.classList.remove("visible");
-      overlay.current.classList.add("invisible");
+    if (overlay?.current?.classList?.contains("visible")) {
+      overlay?.current?.classList?.remove("visible");
+      overlay?.current?.classList?.add("invisible");
     }
   };
 
@@ -312,6 +314,12 @@ const Home = () => {
               </div>
             </div>
           ))}
+      </div>
+      <div
+        ref={notifDiv}
+        className="absolute right-[-100%] border-xp italic shadow-mm px-3 py-2 bottom-16 transition-all duration-500 ease-in"
+      >
+        Added to cart.
       </div>
     </>
   );

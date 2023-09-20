@@ -109,13 +109,13 @@ const Home = () => {
   const handleAddToCard = (item) => {
     dispatch(addToCart({ ...item, quantity: item.quantity + count }));
     setCount(0);
-    if (notifDiv?.current?.classList?.contains("right-[-100%]")) {
-      notifDiv?.current?.classList?.remove("right-[-100%]");
-      notifDiv?.current?.classList?.add("right-12");
+    if (notifDiv?.current?.classList?.contains("top-[-100%]")) {
+      notifDiv?.current?.classList?.remove("top-[-100%]");
+      notifDiv?.current?.classList?.add("top-[40px]");
     }
     setTimeout(() => {
-      notifDiv?.current?.classList?.remove("right-12");
-      notifDiv?.current?.classList?.add("right-[-100%]");
+      notifDiv?.current?.classList?.remove("top-[40px]");
+      notifDiv?.current?.classList?.add("top-[-100%]");
     }, 2000);
   };
   const opeenModal = () => {
@@ -204,7 +204,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="md:px-[1.4rem]">
-                <div className="flex flex-col justify-center md:justify-start h-full mb-[6.25rem] gap-[1.5rem]">
+                <div className="flex flex-col justify-center md:justify-start h-full mb-[6.25rem] md:mb-[3rem] gap-[1.5rem]">
                   <h5 className="text-[#d7691c] uppercase font-semibold text-[1rem] ">
                     {item?.company}
                   </h5>
@@ -248,7 +248,7 @@ const Home = () => {
                       disabled={count === 0}
                       onClick={() => handleAddToCard(item)}
                       className="bg-[#ff7d1b] flex items-center  gap-[0.625rem] text-white text-[1.25rem] px-[2.5rem] py-[0.313rem] rounded-md transition-all
-                       hover:bg-[#ffac6a] md:w-full md:justify-center md:py-[1.4rem]"
+                       hover:bg-[#ffac6a] md:w-full md:justify-center md:py-[1.4rem] sm:py-[.7rem]"
                     >
                       <SlBasket />
                       Add to cart
@@ -317,7 +317,7 @@ const Home = () => {
       </div>
       <div
         ref={notifDiv}
-        className="absolute right-[-100%] border-xp italic shadow-mm px-3 py-2 bottom-16 transition-all duration-500 ease-in"
+        className="absolute right-[3%] top-[-100%] border-xp italic shadow-mm px-3 py-2 bg-[#fff] transition-all duration-500 ease-in"
       >
         Added to cart.
       </div>
